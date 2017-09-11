@@ -98,7 +98,7 @@ var Application = {
    collectMedia: function(path, recursive, level) {
       if (level === undefined)
          level = 0;
-      var directoryEntry = new DirectoryEntry('', path);
+      var directoryEntry = path;//new DirectoryEntry('', path);
       if(!directoryEntry.isDirectory) {
          console.log('The provided path is not a directory');
          return;
