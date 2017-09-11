@@ -87,6 +87,8 @@ var Application = {
          systemUrl,
          function(fileSystem){
             //var root = fileSystem.root;
+            console.log("fileSystem:");
+            console.log(fileSystem);
             AppFile.deleteFiles();
             Application.collectMedia(fileSystem, true);
          },
@@ -99,6 +101,8 @@ var Application = {
       if (level === undefined)
          level = 0;
       var directoryEntry = path;//new DirectoryEntry('', path);
+            console.log("directoryEntry:");
+            console.log(directoryEntry);
       if(!directoryEntry.isDirectory) {
          console.log('The provided path is not a directory');
          return;
@@ -109,12 +113,14 @@ var Application = {
             var appFile;
             var extension;
             for (var i = 0; i < entries.length; i++) {
+            console.log("entries[i]:");
+            console.log(entries[i]);
                if (entries[i].name === '.')
                   continue;
  
                extension = entries[i].name.substr(entries[i].name.lastIndexOf('.'));
                if (entries[i].isDirectory === true && recursive === true)
-                  Application.collectMedia(entries[i].fullPath, recursive, level + 1);
+                  Application.collectMedia(entries[i], recursive, level + 1);
                else if (entries[i].isFile === true && $.inArray(extension, AppFile.EXTENSIONS) >= 0)
                {
                   appFile = new AppFile(entries[i].name, entries[i].fullPath);
