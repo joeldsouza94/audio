@@ -123,7 +123,7 @@ var Application = {
                   Application.collectMedia(entries[i], recursive, level + 1);
                else if (entries[i].isFile === true && $.inArray(extension, AppFile.EXTENSIONS) >= 0)
                {
-                  appFile = new AppFile(entries[i].name, entries[i].fullPath);
+                  appFile = new AppFile(entries[i].name, entries[i].toURL());
                   appFile.addFile();
                   console.log('File saved: ' + entries[i].fullPath);
                }
