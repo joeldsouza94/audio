@@ -17,9 +17,13 @@ var Application = {
          }
       );
       $(document).on(
-         'pagechange',
+         'pagecontainerchange',
          function(event, properties)
          {
+            console.log("properties:");
+            console.log(properties);
+            console.log("dataUrl :");
+            console.log(properties.dataUrl);
             if (properties.absUrl === $.mobile.path.makeUrlAbsolute('player.html'))
             {
                Application.initPlayerPage(
