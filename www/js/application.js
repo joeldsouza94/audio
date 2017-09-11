@@ -80,13 +80,15 @@ var Application = {
       });
    },
    updateMediaList: function() {
-      window.requestFileSystem(
-         LocalFileSystem.PERSISTENT,
-         0,
+      console.log("externalRootDirectory/Download/: ");
+            var systemUrl = cordova.file.externalRootDirectory + "Download/";
+            console.log(systemUrl);
+      window.resolveLocalFileSystemURL(
+         systemUrl,
          function(fileSystem){
-            var root = fileSystem.root;
+            //var root = fileSystem.root;
             AppFile.deleteFiles();
-            Application.collectMedia(root.fullPath, true);
+            Application.collectMedia(fileSystem, true);
          },
          function(error){
             console.log('File System Error: ' + error.code);
@@ -122,7 +124,7 @@ var Application = {
             }
          },
          function(error) {
-            console.log('Unable to read the directory. Errore: ' + error.code);
+            console.log('Unable to read the directory. Error: ' + error.code);
          }
       );
  
