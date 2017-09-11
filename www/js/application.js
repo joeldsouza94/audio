@@ -1,5 +1,6 @@
 var Application = {
    initApplication: function() {
+      $(document).pagecontainer();
       $(document).on(
          'pageinit',
          '#files-list-page',
