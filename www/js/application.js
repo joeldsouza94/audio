@@ -22,8 +22,8 @@ var Application = {
          {
             console.log("properties:");
             console.log(properties);
-            console.log("dataUrl :");
-            console.log(properties.dataUrl);
+            console.log("absUrl :");
+            console.log(properties.absUrl);
             if (properties.absUrl === $.mobile.path.makeUrlAbsolute('player.html'))
             {
                Application.initPlayerPage(
@@ -154,7 +154,7 @@ var Application = {
  
       function getPlayHandler(file) {
          return function playHandler() {
-            $.mobile.changePage(
+            $.mobile.change(
                'player.html',
                {
                   data: {
