@@ -154,7 +154,8 @@ var Application = {
  
       function getPlayHandler(file) {
          return function playHandler() {
-            $.mobile.change(
+            $(document).pagecontainer(
+               'change',
                'player.html',
                {
                   data: {
