@@ -158,6 +158,9 @@ var Application = {
       }
  
       function getPlayHandler(file) {
+         alert("34");
+         alert(file);
+         alert(JSON.stringify(file));
          return function playHandler() {
             $(document).pagecontainer(
                'change',
