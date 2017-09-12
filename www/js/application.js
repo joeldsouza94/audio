@@ -27,6 +27,8 @@ var Application = {
             console.log(properties.absUrl);
             if (properties.absUrl === $.mobile.path.makeUrlAbsolute('player.html'))
             {
+               alert("123");
+               alert(properties.options.data.file);
                Application.initPlayerPage(
                   JSON.parse(properties.options.data.file)
                );
@@ -53,6 +55,8 @@ var Application = {
    initPlayerPage: function(file) {
       Player.stop();
       $('#media-name').text(file.name);
+      alert(file.name);
+      alert(file.fullPath);
       $('#media-path').text(file.fullPath);
       $('#player-play').click(function() {
          Player.playPause(file.fullPath);
