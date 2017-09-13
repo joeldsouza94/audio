@@ -1,6 +1,6 @@
 var Application = {
    initApplication: function() {
-      $(document).pagecontainer();
+      $('#files-list').pagecontainer();
       $(document).on(
          'pageinit',
          '#files-list-page',
@@ -17,7 +17,7 @@ var Application = {
             Application.openLinksInApp();
          }
       );
-      $(document).on(
+      $('#files-list').on(
          'pagecontainerchange',
          function(event, properties)
          {
@@ -27,8 +27,8 @@ var Application = {
             console.log(properties.absUrl);
             if (properties.absUrl === $.mobile.path.makeUrlAbsolute('player.html'))
             {
-               alert("123");
-               alert(properties.options.data.file);
+               console.log("123");
+               console.log(properties.options.data.file);
                Application.initPlayerPage(
                   JSON.parse(properties.options.data.file)
                );
@@ -55,8 +55,8 @@ var Application = {
    initPlayerPage: function(file) {
       Player.stop();
       $('#media-name').text(file.name);
-      alert(file.name);
-      alert(file.fullPath);
+      console.log(file.name);
+      console.log(file.fullPath);
       $('#media-path').text(file.fullPath);
       $('#player-play').click(function() {
          Player.playPause(file.fullPath);
@@ -158,11 +158,11 @@ var Application = {
       }
  
       function getPlayHandler(file) {
-         alert("34");
-         alert(file);
-         alert(JSON.stringify(file));
+         console.log("34");
+         console.log(file);
+         console.log(JSON.stringify(file));
          return function playHandler() {
-            $(document).pagecontainer(
+            $('#files-list').pagecontainer(
                'change',
                'player.html',
                {
