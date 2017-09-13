@@ -16,8 +16,8 @@ var Application = {
             Application.openLinksInApp();
          }
       );
-      /*
-      $('#files-list').on(
+      
+      $(':mobile-pagecontainer').on(
          'pagecontainerchange',
          function(event, properties)
          {
@@ -35,7 +35,7 @@ var Application = {
             }
          }
       );
-      */
+      
    },
    initFilesListPage: function() {
       $('#update-button').click(
