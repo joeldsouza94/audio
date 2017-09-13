@@ -1,6 +1,8 @@
 var Application = {
    initApplication: function() {
-      $('#files-list').pagecontainer();
+      $('#files-list').pagecontainer({
+        change: function( event, ui ) {}
+      });
       $(document).on(
          'pageinit',
          '#files-list-page',
