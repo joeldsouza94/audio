@@ -114,14 +114,16 @@ var Player = {
       Player.updateSliderPosition(seconds);
    },
    changePlayButton: function(imageName) {
+       /*
       var background = $('#player-play')
       .css('background-image');
       //.replace('url(', '')
       //.replace(')', '');
- 
+
       $('#player-play').css(
          'background-image',
          'url(' + background.replace(/images\/.*\.png$/, 'img/' + imageName + '.png') + ')'
       );
+      */
    }
 };
