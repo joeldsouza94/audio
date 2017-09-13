@@ -1,8 +1,5 @@
 var Application = {
    initApplication: function() {
-      $('#files-list').pagecontainer({
-        change: function( event, ui ) {}
-      });
       $(document).on(
          'pageinit',
          '#files-list-page',
@@ -164,6 +161,9 @@ var Application = {
          console.log(file);
          console.log(JSON.stringify(file));
          return function playHandler() {
+      $('#files-list').pagecontainer({
+        change: function( event, ui ) {}
+      });
             $('#files-list').pagecontainer(
                'change',
                'player.html',
