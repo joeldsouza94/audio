@@ -163,7 +163,7 @@ var Application = {
          console.log(file);
          console.log(JSON.stringify(file));
          return function playHandler() {
-            $('#files-list').pagecontainer(
+            $(':mobile-pagecontainer').pagecontainer(
                'change',
                'player.html',
                {
