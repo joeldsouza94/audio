@@ -115,9 +115,9 @@ var Player = {
    },
    changePlayButton: function(imageName) {
       var background = $('#player-play')
-      .css('background-image')
-      .replace('url(', '')
-      .replace(')', '');
+      .css('background-image');
+      //.replace('url(', '')
+      //.replace(')', '');
  
       $('#player-play').css(
          'background-image',
