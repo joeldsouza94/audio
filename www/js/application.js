@@ -16,6 +16,7 @@ var Application = {
             Application.openLinksInApp();
          }
       );
+      /*
       $('#files-list').on(
          'pagecontainerchange',
          function(event, properties)
@@ -34,6 +35,7 @@ var Application = {
             }
          }
       );
+      */
    },
    initFilesListPage: function() {
       $('#update-button').click(
@@ -197,10 +199,11 @@ var Application = {
          };
       }
       
-      
+      /*
       $('#files-list').pagecontainer({
         change: function( event, ui ) {}
       });
+      */
       var $listElement, $linkElement;
       files.sort(AppFile.compareIgnoreCase);
       for(var i = 0; i < files.length; i++)
