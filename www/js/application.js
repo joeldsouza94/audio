@@ -18,7 +18,7 @@ var Application = {
       );
       
       $(':mobile-pagecontainer').on(
-         'pagecontainerchange',
+         'pagecontainerbeforechange',
          function(event, properties)
          {
             console.log("properties:");
