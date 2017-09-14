@@ -16,8 +16,12 @@ var Application = {
             Application.openLinksInApp();
          }
       );
-      
-      $('document').on(
+      $(document).on(
+         'pageinit',
+         '#player-page',
+         function()
+         {
+            $('document').on(
          'pagecontainerbeforechange',
          function(event, properties)
          {
@@ -35,6 +39,10 @@ var Application = {
             }
          }
       );
+         }
+      );
+      
+      
       
    },
    initFilesListPage: function() {
