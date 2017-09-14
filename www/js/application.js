@@ -96,6 +96,9 @@ var Application = {
    },
    openLinksInApp: function()
    {
+      var avc = $('#aurelio-page').length;
+         console.log("avc");
+      console.log(avc);
       $("a[target=\"_blank\"]").on('click', function(event) {
          event.preventDefault();
          window.open($(this).attr('href'), '_target');
