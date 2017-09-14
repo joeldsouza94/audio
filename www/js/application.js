@@ -62,6 +62,9 @@ var Application = {
    },
    initPlayerPage: function(file) {
       Player.stop();
+      var qwe = $('#media-name').length;
+      console.log("player");
+      console.log(qwe);
       $('#media-name').text(file.name);
       console.log(file.name);
       console.log(file.fullPath);
