@@ -19,16 +19,17 @@ var Application = {
 
       
       $(document).on(
-         'pagechange',
+         'pagebeforechange',
          function(event, properties)
          {
-            console.log("properties:");
-            console.log(properties);
+            //console.log("properties:");
+            //console.log(properties);
             console.log("absUrl :");
             console.log(properties.absUrl);
             if (properties.absUrl === $.mobile.path.makeUrlAbsolute('player.html'))
             {
                console.log("123");
+               console.log(properties.options.data);
                console.log(properties.options.data.file);
                Application.initPlayerPage(
                   JSON.parse(properties.options.data.file)
