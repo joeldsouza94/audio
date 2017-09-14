@@ -19,7 +19,7 @@ var Application = {
 
       
       $(document).on(
-         'pagecontainerbeforechange',
+         'pagechange',
          function(event, properties)
          {
             console.log("properties:");
