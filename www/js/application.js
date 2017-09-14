@@ -17,7 +17,7 @@ var Application = {
          }
       );
       
-      $(':mobile-pagecontainer').on(
+      $('document').on(
          'pagecontainerbeforechange',
          function(event, properties)
          {
