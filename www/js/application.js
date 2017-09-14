@@ -16,12 +16,9 @@ var Application = {
             Application.openLinksInApp();
          }
       );
-      $(document).on(
-         'pageinit',
-         '#player-page',
-         function()
-         {
-            $('document').on(
+
+      
+      $('document').on(
          'pagecontainerbeforechange',
          function(event, properties)
          {
@@ -39,10 +36,6 @@ var Application = {
             }
          }
       );
-         }
-      );
-      
-      
       
    },
    initFilesListPage: function() {
@@ -167,9 +160,9 @@ var Application = {
       }
  
       function getPlayHandler(file) {
-         console.log("34");
-         console.log(file);
-         console.log(JSON.stringify(file));
+         //console.log("34");
+         //console.log(file);
+         //console.log(JSON.stringify(file));
          return function playHandler() {
             $(':mobile-pagecontainer').pagecontainer(
                'change',
