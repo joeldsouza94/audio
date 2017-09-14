@@ -18,6 +18,7 @@ var Application = {
       );
 
       
+      var isFileLoaded;
       $(document).on(
          'pagebeforechange',
          function(event, properties)
@@ -26,15 +27,19 @@ var Application = {
             //console.log(properties);
             console.log("absUrl :");
             console.log(properties.absUrl);
-            if (properties.absUrl === $.mobile.path.makeUrlAbsolute('player.html'))
+            if (properties.absUrl === $.mobile.path.makeUrlAbsolute('player.html') && !isFileLoaded)
             {
                console.log("123");
                console.log(properties.options.data);
                console.log(properties.options.data.file);
+               isFileLoaded = true;
                Application.initPlayerPage(
                   JSON.parse(properties.options.data.file)
                );
-            }
+            } 
+            else {
+               isFileLoaded = false;
+            } 
          }
       );
       
