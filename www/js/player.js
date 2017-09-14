@@ -90,6 +90,9 @@ var Player = {
       Player.resetLayout();
    },
    resetLayout: function() {
+      console.log("resetLayout");
+      console.log(Utility.formatTime(0));
+      console.log($('#media-played').length);
       $('#media-played').text(Utility.formatTime(0));
       Player.changePlayButton('play');
       Player.updateSliderPosition(0);
