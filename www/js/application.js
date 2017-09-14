@@ -33,9 +33,11 @@ var Application = {
                console.log(properties.options.data);
                console.log(properties.options.data.file);
                isFileLoaded = true;
+               $( document ).ready(function() {
                Application.initPlayerPage(
                   JSON.parse(properties.options.data.file)
                );
+                });
             } 
             else {
                isFileLoaded = false;
