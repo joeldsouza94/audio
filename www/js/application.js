@@ -20,7 +20,7 @@ var Application = {
       
       var isFileLoaded;
       $(document).on(
-         'pagebeforechange',
+         'pagechange',
          function(event, properties)
          {
             //console.log("properties:");
