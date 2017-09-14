@@ -21,7 +21,26 @@
       <script src="js/player.js"></script>
       <script>
          $(document).on('pagebeforecreate orientationchange', Application.updateIcons);
-         $(document).one('deviceready', Application.initApplication);
+         //$(document).one('deviceready', Application.initApplication);
+         $(document).ready(function() {
+    // are we running in native app or in a browser?
+    window.isphone = false;
+    if(document.URL.indexOf("http://") === -1 
+        && document.URL.indexOf("https://") === -1) {
+        window.isphone = true;
+    }
+
+    if( window.isphone ) {
+        document.addEventListener("deviceready", onDeviceReady, false);
+    } else {
+        onDeviceReady();
+    }
+});
+
+function onDeviceReady() {
+    // do everything here.
+    Application.initApplication();
+}
       </script>
    </head>
    <body>
