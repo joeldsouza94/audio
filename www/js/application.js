@@ -18,7 +18,7 @@ var Application = {
       );
 
       
-      $('document').on(
+      $(document).on(
          'pagecontainerbeforechange',
          function(event, properties)
          {
