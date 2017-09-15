@@ -29,20 +29,24 @@ var Application = {
             console.log(properties.absUrl);
             if (properties.absUrl === $.mobile.path.makeUrlAbsolute('player.html') && !isFileLoaded)
             {
+               $(document).on(
+                  'pageinit',
+                  '#player-page',
+                        function() {
 
-      var qwe = $('#media-name').length;
-      console.log("player");
-      console.log(qwe);
-               console.log("123");
-               console.log(properties.options.data);
-               console.log(properties.options.data.file);
-               isFileLoaded = true;
-               $( document ).ready(function() {
-               Application.initPlayerPage(
-                  JSON.parse(properties.options.data.file)
+                           var qwe = $('#media-name').length;
+                           console.log("player");
+                           console.log(qwe);
+                           console.log("123");
+                           console.log(properties.options.data);
+                           console.log(properties.options.data.file);
+                           isFileLoaded = true;
+                           Application.initPlayerPage(
+                              JSON.parse(properties.options.data.file)
+                           );
+                        } 
                );
-                });
-            } 
+            }
             else {
                isFileLoaded = false;
             } 
@@ -181,11 +185,6 @@ var Application = {
          //console.log("34");
          //console.log(file);
          //console.log(JSON.stringify(file));
-
-      $(document).on(
-         'pageinit',
-         '#player-page',
-               function() {
          return function playHandler() {
             $(':mobile-pagecontainer').pagecontainer(
                'change',
@@ -197,7 +196,6 @@ var Application = {
                }
             );
          };
-      });
       }
  
       function getDeleteHandler(file) {
