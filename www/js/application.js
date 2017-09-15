@@ -29,6 +29,10 @@ var Application = {
             console.log(properties.absUrl);
             if (properties.absUrl === $.mobile.path.makeUrlAbsolute('player.html') && !isFileLoaded)
             {
+
+      var qwe = $('#media-name').length;
+      console.log("player");
+      console.log(qwe);
                console.log("123");
                console.log(properties.options.data);
                console.log(properties.options.data.file);
@@ -177,6 +181,11 @@ var Application = {
          //console.log("34");
          //console.log(file);
          //console.log(JSON.stringify(file));
+
+      $(document).on(
+         'pageinit',
+         '#player-page',
+               function() {
          return function playHandler() {
             $(':mobile-pagecontainer').pagecontainer(
                'change',
@@ -188,6 +197,7 @@ var Application = {
                }
             );
          };
+      });
       }
  
       function getDeleteHandler(file) {
