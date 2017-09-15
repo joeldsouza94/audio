@@ -17,10 +17,11 @@ var Application = {
          }
       );
 
+      
       $(document).on("pageinit", "#player-page", function () {
       var isFileLoaded;
       $(document).on(
-         'pagebeforechange',
+         'pagecontainerbeforetransition',
          function(event, properties)
          {
             //console.log("properties:");
@@ -45,7 +46,7 @@ var Application = {
             } 
          }
       );
-   });
+      });
 
    },
 
