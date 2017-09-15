@@ -17,7 +17,7 @@ var Application = {
          }
       );
 
-      
+      $(document).on("pageinit", "#player-page", function () {
       var isFileLoaded;
       $(document).on(
          'pagebeforechange',
@@ -29,11 +29,6 @@ var Application = {
             console.log(properties.absUrl);
             if (properties.absUrl === $.mobile.path.makeUrlAbsolute('player.html') && !isFileLoaded)
             {
-               $(document).on(
-                  'pageinit',
-                  '#player-page',
-                        function() {
-
                            var qwe = $('#media-name').length;
                            console.log("player");
                            console.log(qwe);
@@ -44,16 +39,16 @@ var Application = {
                            Application.initPlayerPage(
                               JSON.parse(properties.options.data.file)
                            );
-                        } 
-               );
             }
             else {
                isFileLoaded = false;
             } 
          }
       );
-      
+   });
+
    },
+
    initFilesListPage: function() {
       $('#update-button').click(
          function()
