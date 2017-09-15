@@ -21,7 +21,7 @@ var Application = {
       //$(document).on("pageinit", "#player-page", function () {
       var isFileLoaded;
       $(document).on(
-         'pagecontainerbeforetransition',
+         'pagecontainertransition',
          function(event, properties)
          {
             //console.log("properties:");
