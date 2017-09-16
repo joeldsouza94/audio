@@ -50,9 +50,8 @@ var Application = {
                               var passedFile = JSON.parse(properties.options.data.file);
       $(document).on("pageinit", "#player-page", function () {
          console.log("player-page pagebeforechange init");
-                              Application.initPlayerPage(
-                                 passedFile
-                              );
+                              Application.initPlayerPage(passedFile);
+                           });
                }
             }
             else {
