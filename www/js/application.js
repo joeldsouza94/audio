@@ -18,7 +18,7 @@ var Application = {
       );
 
       
-      //$(document).on("pageinit", "#player-page", function () {
+      $(document).on("pageinit", "#player-page", function () {
       var isFileLoaded;
       $(document).on(
          'pagebeforechange',
@@ -46,7 +46,7 @@ var Application = {
             } 
          }
       );
-      //});
+      });
 
    },
 
