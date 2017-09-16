@@ -18,7 +18,7 @@ var Application = {
       );
 
       
-      $(document).on("pageinit", "#player-page", function () {
+      //$(document).on("pageinit", "#player-page", function () {
       var isFileLoaded;
       $(document).on(
          'pagebeforechange',
@@ -46,7 +46,7 @@ var Application = {
             } 
          }
       );
-      });
+      //});
 
    },
 
@@ -223,6 +223,7 @@ var Application = {
         change: function( event, ui ) {}
       });
       */
+      $(document).on("pageinit", "#player-page", function () {
       var $listElement, $linkElement;
       files.sort(AppFile.compareIgnoreCase);
       for(var i = 0; i < files.length; i++)
@@ -250,5 +251,6 @@ var Application = {
          $('#' + idElement).append($listElement);
       }
       $('#' + idElement).listview('refresh');
+   });
    }
 };
