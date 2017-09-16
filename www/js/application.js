@@ -18,7 +18,7 @@ var Application = {
       );
 
       
-      $(document).on("pagebeforeshow", "#player-page", function () {
+      $(document).on("pageinit", "#player-page", function () {
       var isFileLoaded;
       $(document).on(
          'pagebeforechange',
