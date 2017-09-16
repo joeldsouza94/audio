@@ -33,7 +33,7 @@ var Application = {
             //console.log(properties);
             console.log("absUrl :");
             console.log(properties.absUrl);
-            if (properties.absUrl === $.mobile.path.makeUrlAbsolute('player.html') && !isFileLoaded)
+            if (properties.absUrl === $.mobile.path.makeUrlAbsolute('player.html') && isFileLoaded)
             {
                            var qwe = $('#media-name').length;
                            console.log("player");
