@@ -36,9 +36,7 @@ var Application = {
          'pagebeforechange',
          function(event, properties)
          {
-            if(pagebeforechangeCall == 2) {
-               pagebeforechangeCall = 1;
-               console.log("pagebeforechangeinit " + pagebeforechangeCall);
+            if(pagebeforechangeCall == 1) {
                console.log("absUrl :");
                console.log(properties.absUrl);
                if (properties.absUrl === $.mobile.path.makeUrlAbsolute('player.html'))
@@ -53,6 +51,10 @@ var Application = {
                                  JSON.parse(properties.options.data.file)
                               );
                }
+            }
+            else {
+               pagebeforechangeCall = 1;
+               console.log("pagebeforechangeinit " + pagebeforechangeCall); 
             }
          }
       );
