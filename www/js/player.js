@@ -125,7 +125,7 @@ var Player = {
       */
       $('#player-play').css(
          'background-image',
-         "url('../img/" + imageName + ".png')"
+         "url('../www/img/" + imageName + ".png')"
       );
       
    }
