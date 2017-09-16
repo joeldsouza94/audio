@@ -47,9 +47,12 @@ var Application = {
                               console.log("123");
                               console.log(properties.options.data);
                               console.log(properties.options.data.file);
+      $(document).on("pageinit", "#player-page", function () {
+         console.log("player-page pagebeforechange init");
                               Application.initPlayerPage(
                                  JSON.parse(properties.options.data.file)
                               );
+                           });
                }
             }
             else {
