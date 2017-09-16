@@ -1,7 +1,11 @@
 var Application = {
    initApplication: function() {
+      var pagebeforechangeCall = 1;
+      console.log("pagebeforechangeinit " + pagebeforechangeCall);
       $(document).on("pageinit", "#player-page", function () {
          console.log("player-page init");
+         pagebeforechangeCall = 2;
+         console.log("pagebeforechangeCall " + pagebeforechangeCall);
       });
       $(document).on(
          'pageinit',
@@ -9,6 +13,8 @@ var Application = {
          function()
          {  
             console.log("files-list init");
+            pagebeforechangeCall = 2;
+            console.log("pagebeforechangeCall " + pagebeforechangeCall);
             Application.initFilesListPage();
          }
       );
@@ -18,37 +24,36 @@ var Application = {
          function()
          {
             console.log("aurelio.html init");
+            pagebeforechangeCall = 2;
+            console.log("pagebeforechangeCall " + pagebeforechangeCall);
             Application.openLinksInApp();
          }
       );
 
       
       //$(document).on("pageinit", "#player-page", function () {
-      var isFileLoaded;
       $(document).on(
          'pagebeforechange',
          function(event, properties)
          {
-            //console.log("properties:");
-            //console.log(properties);
-            console.log("absUrl :");
-            console.log(properties.absUrl);
-            if (properties.absUrl === $.mobile.path.makeUrlAbsolute('player.html') && isFileLoaded)
-            {
-                           var qwe = $('#media-name').length;
-                           console.log("player");
-                           console.log(qwe);
-                           console.log("123");
-                           console.log(properties.options.data);
-                           console.log(properties.options.data.file);
-                           isFileLoaded = true;
-                           Application.initPlayerPage(
-                              JSON.parse(properties.options.data.file)
-                           );
+            if(pagebeforechangeCall == 2) {
+               pagebeforechangeCall = 1;
+               console.log("pagebeforechangeinit " + pagebeforechangeCall);
+               console.log("absUrl :");
+               console.log(properties.absUrl);
+               if (properties.absUrl === $.mobile.path.makeUrlAbsolute('player.html'))
+               {
+                              var qwe = $('#media-name').length;
+                              console.log("player");
+                              console.log(qwe);
+                              console.log("123");
+                              console.log(properties.options.data);
+                              console.log(properties.options.data.file);
+                              Application.initPlayerPage(
+                                 JSON.parse(properties.options.data.file)
+                              );
+               }
             }
-            else {
-               isFileLoaded = false;
-            } 
          }
       );
       //});
