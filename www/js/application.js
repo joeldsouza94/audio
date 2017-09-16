@@ -1,10 +1,14 @@
 var Application = {
    initApplication: function() {
+      $(document).on("pageinit", "#player-page", function () {
+         console.log("player-page init");
+      });
       $(document).on(
          'pageinit',
          '#files-list-page',
          function()
-         {
+         {  
+            console.log("files-list init");
             Application.initFilesListPage();
          }
       );
@@ -13,12 +17,13 @@ var Application = {
          '#aurelio-page',
          function()
          {
+            console.log("aurelio.html init");
             Application.openLinksInApp();
          }
       );
 
       
-      $(document).on("pageinit", "#player-page", function () {
+      //$(document).on("pageinit", "#player-page", function () {
       var isFileLoaded;
       $(document).on(
          'pagebeforechange',
@@ -46,7 +51,7 @@ var Application = {
             } 
          }
       );
-      });
+      //});
 
    },
 
