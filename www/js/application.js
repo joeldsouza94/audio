@@ -124,7 +124,7 @@ var Application = {
    },
    updateMediaList: function() {
       console.log("externalRootDirectory/Download/: ");
-            var systemUrl = cordova.file.externalRootDirectory + "Download/";
+            var systemUrl = cordova.file.externalRootDirectory;// + "Download/";
             console.log(systemUrl);
       window.resolveLocalFileSystemURL(
          systemUrl,
