@@ -1,5 +1,6 @@
 var Application = {
    initApplication: function() {
+      /*
       var pagebeforechangeCall = 1;
       console.log("pagebeforechangeinit " + pagebeforechangeCall);
       $(document).on("pageinit", "#player-page", function () {
@@ -7,14 +8,17 @@ var Application = {
          pagebeforechangeCall = 2;
          console.log("pagebeforechangeCall " + pagebeforechangeCall);
       });
+      */
       $(document).on(
          'pageinit',
          '#files-list-page',
          function()
          {  
+            /*
             console.log("files-list init");
             pagebeforechangeCall = 2;
             console.log("pagebeforechangeCall " + pagebeforechangeCall);
+            */
             Application.initFilesListPage();
          }
       );
@@ -23,9 +27,11 @@ var Application = {
          '#aurelio-page',
          function()
          {
+            /*
             console.log("aurelio.html init");
             pagebeforechangeCall = 2;
             console.log("pagebeforechangeCall " + pagebeforechangeCall);
+            */
             Application.openLinksInApp();
          }
       );
