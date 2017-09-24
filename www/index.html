@@ -22,6 +22,8 @@
       <script>
          $(document).on('pagebeforecreate orientationchange', Application.updateIcons);
          //$(document).one('deviceready', Application.initApplication);
+        document.addEventListener("deviceready", onDeviceReady, false);
+         /*
          $(document).ready(function() {
     // are we running in native app or in a browser?
     window.isphone = false;
@@ -36,6 +38,7 @@
         onDeviceReady();
     }
 });
+*/
 
 function onDeviceReady() {
     // do everything here.
