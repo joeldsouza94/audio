@@ -30,7 +30,7 @@ var Application = {
          }
       );
 
-      
+      /*
       //$(document).on("pageinit", "#player-page", function () {
       $(document).on(
          'pagebeforechange',
@@ -61,7 +61,7 @@ var Application = {
          }
       );
       //});
-
+      */
    },
 
    initFilesListPage: function() {
