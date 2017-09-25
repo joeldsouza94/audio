@@ -63,7 +63,7 @@ function onDeviceReady() {
          </div>
          <footer data-role="footer">
             <h3 id="copyright-title">Created by Aurelio De Rosa</h3>
-            <a id="credits-button" href="aurelio.html" data-icon="info" data-iconpos="notext" class="ui-btn-right">Credits</a>
+            <a id="credits-button" href="#aurelio-page" data-icon="info" data-iconpos="notext" class="ui-btn-right">Credits</a>
          </footer>
       </div>
       <div id="files-list-page" data-role="page">
@@ -78,7 +78,7 @@ function onDeviceReady() {
          </div>
          <footer data-role="footer">
             <h3 id="copyright-title">Created by Aurelio De Rosa</h3>
-            <a id="credits-button" href="aurelio.html" data-icon="info" data-iconpos="notext" class="ui-btn-right">Credits</a>
+            <a id="credits-button" href="#aurelio-page" data-icon="info" data-iconpos="notext" class="ui-btn-right">Credits</a>
          </footer>
       <div id="waiting-popup" data-role="popup" data-position-to="window" data-dismissible="false">
          <header data-role="header">
@@ -88,6 +88,97 @@ function onDeviceReady() {
             <p>Searching audio files, please wait...</p>
          </div>
       </div>
+      </div>
+      <div id="player-page" data-role="page">
+         <header data-role="header">
+            <a href="#" data-icon="back" data-iconpos="notext" data-rel="back" title="Go back">Back</a>
+            <h1>Player</h1>
+         </header>
+         <div data-role="content">
+            <div id="player">
+               <div id="media-info">
+                  <p>You're listening to: <span id="media-name"></span></p>
+                  <p>Located at: <span id="media-path"></span></p>
+                  <div>
+                     Played: <label id="media-played">-</label> of <label id="media-duration">-</label>
+                     <input type="range" name="time-slider" id="time-slider" value="0" min="0" max="100" data-highlight="true" />
+                  </div>
+               </div>
+               <a href="#" id="player-play" title="Play / Pause"></a>
+               <a href="#" id="player-stop" title="Stop"></a>
+            </div>
+         </div>
+         <footer data-role="footer">
+            <h3 id="copyright-title">Created by Aurelio De Rosa</h3>
+            <a id="credits-button" href="#aurelio-page" data-icon="info" data-iconpos="notext" class="ui-btn-right">Credits</a>
+         </footer>
+      </div>
+      <div id="aurelio-page" data-role="page">
+         <header data-role="header">
+            <a href="#" data-icon="back" data-iconpos="notext" data-rel="back" title="Go back">Back</a>
+            <h1>Aurelio De Rosa</h1>
+         </header>
+         <div id="content" data-role="content">
+            <div class="person">
+               <figure class="photo">
+                  <!--<img src="img/aurelio-de-rosa.png" alt="Photo of Aurelio De Rosa" /> -->
+                  <figcaption>Aurelio De Rosa</figcaption>
+               </figure>
+               <article>
+                  <p>
+                     I am an Italian web and app developer with a Bachelor's degree in Computer Sciences and more than
+                     5 years' programming experience using HTML5, CSS3, JavaScript and PHP. I mainly use the
+                     LAMP stack and frameworks like jQuery, jQuery Mobile, Cordova (PhoneGap) and Zend Framework.
+                     My interests include web security, web accessibility, SEO and WordPress.
+                  </p>
+                  <p>
+                     I'm currently self-employed, working with the cited technologies, and I'm also a contributor to the
+                     SitePoint and Tuts+ network where I write articles pertaining to the topics I work with.
+                  </p>
+               </article>
+               <article>
+                  <h2>Contacts</h2>
+                  <ul data-role="listview" data-inset="true">
+                     <li>
+                        <a href="http://www.audero.it" target="_blank">
+                           <!--<img src="img/website-icon.png" alt="Website icon" /> -->
+                           Visit my website: www.audero.it
+                        </a>
+                     </li>
+                     <li>
+                        <a href="mailto:aurelioderosa@gmail.com" target="_blank">
+                           <!--<img src="img/email-icon.png" alt="Email icon" /> -->
+                           Drop me an e-mail: aurelioderosa@gmail.com
+                        </a>
+                     </li>
+                     <li>
+                        <a href="mailto:a.derosa@audero.it" target="_blank">
+                           <!--<img src="img/email-icon.png" alt="Email icon" /> -->
+                           Drop me an e-mail (alternative address): a.derosa@audero.it
+                        </a>
+                     </li>
+                     <li>
+                        <a href="https://twitter.com/AurelioDeRosa" target="_blank">
+                           <!--<img src="img/twitter-icon.png" alt="Twitter icon" /> -->
+                           Follow me on Twitter (@AurelioDeRosa)
+                        </a>
+                     </li>
+                     <li>
+                        <a href="http://it.linkedin.com/in/aurelioderosa/en" target="_blank">
+                           <!--<img src="img/linkedin-icon.png" alt="LinkedIn icon" /> -->
+                           View my profile on LinkedIn
+                        </a>
+                     </li>
+                     <li>
+                        <a href="https://bitbucket.org/AurelioDeRosa" target="_blank">
+                           <!--<img src="img/bitbucket-icon.png" alt="BitBucket icon" /> -->
+                           Visit my repository on BitBucket (AurelioDeRosa)
+                        </a>
+                     </li>
+                  </ul>
+               </article>
+            </div>
+         </div>
       </div>
    </body>
 </html>
