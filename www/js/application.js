@@ -10,7 +10,7 @@ var Application = {
       });
       */
       $(document).on(
-         'pageinit',
+         'pagecreate',
          '#files-list-page',
          function()
          {  
@@ -23,7 +23,7 @@ var Application = {
          }
       );
       $(document).on(
-         'pageinit',
+         'pagecreate',
          '#aurelio-page',
          function()
          {
@@ -40,7 +40,7 @@ $(document).on( "pagecontainerbeforechange", function( event, ui ) {
 if (ui.toPage == '#player-page') {
    passedFile = ui.options.data.file;
 console.log(passedFile);
-$(document).on("pageinit", "#player-page", function () {
+$(document).on("pagecreate", "#player-page", function () {
          console.log("player-page pagecontainerbeforechange init");
                               Application.initPlayerPage(passedFile);
                            });
