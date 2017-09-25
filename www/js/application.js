@@ -71,6 +71,7 @@ var Application = {
    },
 
    initFilesListPage: function() {
+
       $('#update-button').click(
          function()
          {
@@ -204,7 +205,7 @@ var Application = {
          return function playHandler() {
             $(':mobile-pagecontainer').pagecontainer(
                'change',
-               'player.html',
+               '#player-page',
                {
                   data: {
                      file: JSON.stringify(file)
