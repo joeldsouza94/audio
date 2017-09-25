@@ -35,6 +35,11 @@ var Application = {
             Application.openLinksInApp();
          }
       );
+$(document).on( "pagecontainerbeforechange", function( event, ui ) {
+if (ui.toPage == '#player-page') {
+console.log(ui.options);
+}
+} );
 
       /*
       //$(document).on("pageinit", "#player-page", function () {
