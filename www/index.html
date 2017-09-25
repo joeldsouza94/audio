@@ -1,184 +1,286 @@
-<!DOCTYPE html>
-<html>
-   <head>
-      <meta charset="utf-8" />
-    <meta name="format-detection" content="telephone=no" />
-    <meta name="msapplication-tap-highlight" content="no" />
-    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
-    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
-    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' http://* 'unsafe-inline'; media-src *; img-src 'self' http://* data:" />
-
-      <title>Audero Audio Player</title>
-      <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" type="text/css" media="all" />
-      <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
-      <script src="js/jquery-2.1.4.min.js"></script>
-      <script src="js/jquery.mobile.config.js"></script>
-      <script src="js/jquery.mobile-1.4.5.js"></script>
-      <script src="cordova.js"></script>
-      <script src="js/appFile.js"></script>
-      <script src="js/application.js"></script>
-      <script src="js/utility.js"></script>
-      <script src="js/player.js"></script>
-      <script>
-         $(document).on('pagebeforecreate orientationchange', Application.updateIcons);
-         //$(document).one('deviceready', Application.initApplication);
-        document.addEventListener("deviceready", onDeviceReady, false);
-         /*
-         $(document).ready(function() {
-    // are we running in native app or in a browser?
-    window.isphone = false;
-    if(document.URL.indexOf("http://") === -1 
-        && document.URL.indexOf("https://") === -1) {
-        window.isphone = true;
-    }
-
-    if( window.isphone ) {
-        document.addEventListener("deviceready", onDeviceReady, false);
-    } else {
-        onDeviceReady();
-    }
-});
-*/
-
-function onDeviceReady() {
-    // do everything here.
-    Application.initApplication();
+var Application = {
+   initApplication: function() {
+      /*
+      var pagebeforechangeCall = 1;
+      console.log("pagebeforechangeinit " + pagebeforechangeCall);
+      $(document).on("pageinit", "#player-page", function () {
+         console.log("player-page init");
+         pagebeforechangeCall = 2;
+         console.log("pagebeforechangeCall " + pagebeforechangeCall);
+      });
+      */
+      $(document).on(
+         'pageinit',
+         '#files-list-page',
+         function()
+         {  
+            /*
+            console.log("files-list init");
+            pagebeforechangeCall = 2;
+            console.log("pagebeforechangeCall " + pagebeforechangeCall);
+            */
+            Application.initFilesListPage();
+         }
+      );
+      $(document).on(
+         'pageinit',
+         '#aurelio-page',
+         function()
+         {
+            /*
+            console.log("aurelio.html init");
+            pagebeforechangeCall = 2;
+            console.log("pagebeforechangeCall " + pagebeforechangeCall);
+            */
+            Application.openLinksInApp();
+         }
+      );
+$(document).on( "pagecontainerbeforechange", function( event, ui ) {
+   var passedFile;
+if (ui.toPage == '#player-page') {
+   passedFile = ui.options.data.file;
+console.log(passedFile);
+$(document).on("pageinit", "#player-page", function () {
+         console.log("player-page pagecontainerbeforechange init");
+                              Application.initPlayerPage(passedFile);
+                           });
 }
-      </script>
-   </head>
-   <body>
-      <div id="home-page" data-role="page">
-         <header data-role="header">
-            <h1>Audero Audio Player</h1>
-         </header>
-         <div data-role="content">
-            <p id="app-description">
-               Audero Audio Player is a basic audio player that searches the file system of a device, collects the audio files found and then allows the user to listen them. This app also
-               enables the user to update the list at any time to include files that might have been downloaded after
-               running the operation for the first time. You can also remove any unwanted audio - for example, sounds used as notifications in other applications - by clicking an icon on the right side of the song name. The sound list is ordered alphabetically with letter
-               dividers to organize and group list items, and it has a search box to filter files.
-               You can see the described page by looking at the screenshot below.
-            </p>
-            <a href="#files-list-page" data-role="button">File List</a>
-         </div>
-         <footer data-role="footer">
-            <h3 id="copyright-title">Created by Aurelio De Rosa</h3>
-            <a id="credits-button" href="#aurelio-page" data-icon="info" data-iconpos="notext" class="ui-btn-right">Credits</a>
-         </footer>
-      </div>
-      <div id="files-list-page" data-role="page">
-         <header data-role="header">
-            <a href="#" data-icon="back" data-iconpos="notext" data-rel="back" title="Go back">Back</a>
-            <h1>Media List</h1>
-            <a href="#" id="update-button" data-icon="refresh" data-iconpos="notext">Update List</a>
-         </header>
-         <div data-role="content">
-            <ul id="files-list" data-role="listview" data-autodividers="true" data-filter="true" data-split-icon="delete">
-            </ul>
-         </div>
-         <footer data-role="footer">
-            <h3 id="copyright-title">Created by Aurelio De Rosa</h3>
-            <a id="credits-button" href="#aurelio-page" data-icon="info" data-iconpos="notext" class="ui-btn-right">Credits</a>
-         </footer>
-      <div id="waiting-popup" data-role="popup" data-position-to="window" data-dismissible="false">
-         <header data-role="header">
-            <h1>Updating</h1>
-         </header>
-         <div data-role="content">
-            <p>Searching audio files, please wait...</p>
-         </div>
-      </div>
-      </div>
-      <div id="player-page" data-role="page">
-         <header data-role="header">
-            <a href="#" data-icon="back" data-iconpos="notext" data-rel="back" title="Go back">Back</a>
-            <h1>Player</h1>
-         </header>
-         <div data-role="content">
-            <div id="player">
-               <div id="media-info">
-                  <p>You're listening to: <span id="media-name"></span></p>
-                  <p>Located at: <span id="media-path"></span></p>
-                  <div>
-                     Played: <label id="media-played">-</label> of <label id="media-duration">-</label>
-                     <input type="range" name="time-slider" id="time-slider" value="0" min="0" max="100" data-highlight="true" />
-                  </div>
-               </div>
-               <a href="#" id="player-play" title="Play / Pause"></a>
-               <a href="#" id="player-stop" title="Stop"></a>
-            </div>
-         </div>
-         <footer data-role="footer">
-            <h3 id="copyright-title">Created by Aurelio De Rosa</h3>
-            <a id="credits-button" href="#aurelio-page" data-icon="info" data-iconpos="notext" class="ui-btn-right">Credits</a>
-         </footer>
-      </div>
-      <div id="aurelio-page" data-role="page">
-         <header data-role="header">
-            <a href="#" data-icon="back" data-iconpos="notext" data-rel="back" title="Go back">Back</a>
-            <h1>Aurelio De Rosa</h1>
-         </header>
-         <div id="content" data-role="content">
-            <div class="person">
-               <figure class="photo">
-                  <!--<img src="img/aurelio-de-rosa.png" alt="Photo of Aurelio De Rosa" /> -->
-                  <figcaption>Aurelio De Rosa</figcaption>
-               </figure>
-               <article>
-                  <p>
-                     I am an Italian web and app developer with a Bachelor's degree in Computer Sciences and more than
-                     5 years' programming experience using HTML5, CSS3, JavaScript and PHP. I mainly use the
-                     LAMP stack and frameworks like jQuery, jQuery Mobile, Cordova (PhoneGap) and Zend Framework.
-                     My interests include web security, web accessibility, SEO and WordPress.
-                  </p>
-                  <p>
-                     I'm currently self-employed, working with the cited technologies, and I'm also a contributor to the
-                     SitePoint and Tuts+ network where I write articles pertaining to the topics I work with.
-                  </p>
-               </article>
-               <article>
-                  <h2>Contacts</h2>
-                  <ul data-role="listview" data-inset="true">
-                     <li>
-                        <a href="http://www.audero.it" target="_blank">
-                           <!--<img src="img/website-icon.png" alt="Website icon" /> -->
-                           Visit my website: www.audero.it
-                        </a>
-                     </li>
-                     <li>
-                        <a href="mailto:aurelioderosa@gmail.com" target="_blank">
-                           <!--<img src="img/email-icon.png" alt="Email icon" /> -->
-                           Drop me an e-mail: aurelioderosa@gmail.com
-                        </a>
-                     </li>
-                     <li>
-                        <a href="mailto:a.derosa@audero.it" target="_blank">
-                           <!--<img src="img/email-icon.png" alt="Email icon" /> -->
-                           Drop me an e-mail (alternative address): a.derosa@audero.it
-                        </a>
-                     </li>
-                     <li>
-                        <a href="https://twitter.com/AurelioDeRosa" target="_blank">
-                           <!--<img src="img/twitter-icon.png" alt="Twitter icon" /> -->
-                           Follow me on Twitter (@AurelioDeRosa)
-                        </a>
-                     </li>
-                     <li>
-                        <a href="http://it.linkedin.com/in/aurelioderosa/en" target="_blank">
-                           <!--<img src="img/linkedin-icon.png" alt="LinkedIn icon" /> -->
-                           View my profile on LinkedIn
-                        </a>
-                     </li>
-                     <li>
-                        <a href="https://bitbucket.org/AurelioDeRosa" target="_blank">
-                           <!--<img src="img/bitbucket-icon.png" alt="BitBucket icon" /> -->
-                           Visit my repository on BitBucket (AurelioDeRosa)
-                        </a>
-                     </li>
-                  </ul>
-               </article>
-            </div>
-         </div>
-      </div>
-   </body>
-</html>
+} );
+
+      /*
+      //$(document).on("pageinit", "#player-page", function () {
+      $(document).on(
+         'pagebeforechange',
+         function(event, properties)
+         {
+            if(pagebeforechangeCall == 1) {
+               console.log("absUrl :");
+               console.log(properties.absUrl);
+               if (properties.absUrl === $.mobile.path.makeUrlAbsolute('player.html'))
+               {
+                              var qwe = $('#media-name').length;
+                              console.log("player");
+                              console.log(qwe);
+                              console.log("123");
+                              console.log(properties.options.data);
+                              console.log(properties.options.data.file);
+                              var passedFile = JSON.parse(properties.options.data.file);
+      $(document).on("pageinit", "#player-page", function () {
+         console.log("player-page pagebeforechange init");
+                              Application.initPlayerPage(passedFile);
+                           });
+               }
+            }
+            else {
+               pagebeforechangeCall = 1;
+               console.log("pagebeforechangeinit " + pagebeforechangeCall); 
+            }
+         }
+      );
+      //});
+      */
+   },
+
+   initFilesListPage: function() {
+
+      $('#update-button').click(
+         function()
+         {
+            $('#waiting-popup').popup('open');
+            setTimeout(function(){
+               Application.updateMediaList();
+            }, 150);
+         }
+      );
+      $(document).on('endupdate', function(){
+         Application.createFilesList('files-list', AppFile.getAppFiles());
+         $('#waiting-popup').popup('close');
+      });
+      Application.createFilesList('files-list', AppFile.getAppFiles());
+   },
+   initPlayerPage: function(file) {
+      Player.stop();
+      var qwe = $('#media-name').length;
+      console.log("player");
+      console.log(qwe);
+      $('#media-name').text(file.name);
+      console.log(file.name);
+      console.log(file.fullPath);
+      $('#media-path').text(file.fullPath);
+      $('#player-play').click(function() {
+         Player.playPause(file.fullPath);
+      });
+      $('#player-stop').click(Player.stop);
+      $('#time-slider').on('slidestop', function(event) {
+         Player.seekPosition(event.target.value);
+      });
+   },
+   updateIcons: function()
+   {
+      if ($(window).width() > 480)
+      {
+         $('a[data-icon], button[data-icon]').each(function() {
+            $(this).removeAttr('data-iconpos');
+         });
+      }
+      else
+      {
+         $('a[data-icon], button[data-icon]').each(function() {
+            $(this).attr('data-iconpos', 'notext');
+         });
+      }
+   },
+   openLinksInApp: function()
+   {
+      var avc = $('#aurelio-page').length;
+         console.log("avc");
+      console.log(avc);
+      $("a[target=\"_blank\"]").on('click', function(event) {
+         event.preventDefault();
+         window.open($(this).attr('href'), '_target');
+      });
+   },
+   updateMediaList: function() {
+      console.log("externalRootDirectory/Download/: ");
+            var systemUrl = cordova.file.externalRootDirectory;// + "Download/";
+            console.log(systemUrl);
+      window.resolveLocalFileSystemURL(
+         systemUrl,
+         function(fileSystem){
+            //var root = fileSystem.root;
+            console.log("fileSystem:");
+            console.log(fileSystem);
+            AppFile.deleteFiles();
+            Application.collectMedia(fileSystem, true);
+         },
+         function(error){
+            console.log('File System Error: ' + error.code);
+         }
+      );
+   },
+   collectMedia: function(path, recursive, level) {
+      if (level === undefined)
+         level = 0;
+      var directoryEntry = path;//new DirectoryEntry('', path);
+            console.log("directoryEntry:");
+            console.log(directoryEntry);
+      if(!directoryEntry.isDirectory) {
+         console.log('The provided path is not a directory');
+         return;
+      }
+      var directoryReader = directoryEntry.createReader();
+      directoryReader.readEntries(
+         function (entries) {
+            var appFile;
+            var extension;
+            for (var i = 0; i < entries.length; i++) {
+            console.log("entries[i]:");
+            console.log(entries[i]);
+               if (entries[i].name === '.')
+                  continue;
+ 
+               extension = entries[i].name.substr(entries[i].name.lastIndexOf('.'));
+               if (entries[i].isDirectory === true && recursive === true)
+                  Application.collectMedia(entries[i], recursive, level + 1);
+               else if (entries[i].isFile === true && $.inArray(extension, AppFile.EXTENSIONS) >= 0)
+               {
+                  appFile = new AppFile(entries[i].name, entries[i].toURL());
+                  appFile.addFile();
+                  console.log('File saved: ' + entries[i].fullPath);
+               }
+            }
+         },
+         function(error) {
+            console.log('Unable to read the directory. Error: ' + error.code);
+         }
+      );
+ 
+      if (level === 0)
+         $(document).trigger('endupdate');
+      console.log('Current path analized is: ' + path);
+   },
+   createFilesList: function(idElement, files)
+   {
+      $('#' + idElement).empty();
+ 
+      if (files == null || files.length == 0)
+      {
+         $('#' + idElement).append('<p>No files to show. Would you consider a files update (top right button)?</p>');
+         return;
+      }
+ 
+      function getPlayHandler(file) {
+         //console.log("34");
+         //console.log(file);
+         //console.log(JSON.stringify(file));
+         return function playHandler() {
+            $(':mobile-pagecontainer').pagecontainer(
+               'change',
+               '#player-page',
+               {
+                  data: {
+                     file: JSON.stringify(file)
+                  }
+               }
+            );
+         };
+      }
+ 
+      function getDeleteHandler(file) {
+         return function deleteHandler() {
+            var oldLenght = AppFile.getAppFiles().length;
+            var $parentUl = $(this).closest('ul');
+ 
+            file = new AppFile('', file.fullPath);
+            file.deleteFile();
+            if (oldLenght === AppFile.getAppFiles().length + 1)
+            {
+               $(this).closest('li').remove();
+               $parentUl.listview('refresh');
+            }
+            else
+            {
+               console.log('Media not deleted. Something gone wrong.');
+               navigator.notification.alert(
+                  'Media not deleted. Something gone wrong so please try again.',
+                  function(){},
+                  'Error'
+               );
+            }
+         };
+      }
+      
+      /*
+      $('#files-list').pagecontainer({
+        change: function( event, ui ) {}
+      });
+      */
+      var $listElement, $linkElement;
+      files.sort(AppFile.compareIgnoreCase);
+      for(var i = 0; i < files.length; i++)
+      {
+         $listElement = $('<li>');
+         $linkElement = $('<a>');
+         $linkElement
+         .attr('href', '#')
+         .text(files[i].name)
+         .click(getPlayHandler(files[i]));
+ 
+         // Append the link to the <li> element
+         $listElement.append($linkElement);
+ 
+         $linkElement = $('<a>');
+         $linkElement
+         .attr('href', '#')
+         .text('Delete')
+         .click(getDeleteHandler(files[i]));
+ 
+         // Append the link to the <li> element
+         $listElement.append($linkElement);
+ 
+         // Append the <li> element to the <ul> element
+         $('#' + idElement).append($listElement);
+      }
+      $('#' + idElement).listview('refresh');
+   }
+};
