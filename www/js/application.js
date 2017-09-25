@@ -36,8 +36,14 @@ var Application = {
          }
       );
 $(document).on( "pagecontainerbeforechange", function( event, ui ) {
+   var passedFile;
 if (ui.toPage == '#player-page') {
-console.log(ui.options);
+   passedFile = ui.options.data.file;
+console.log(passedFile);
+$(document).on("pageinit", "#player-page", function () {
+         console.log("player-page pagecontainerbeforechange init");
+                              Application.initPlayerPage(passedFile);
+                           });
 }
 } );
 
